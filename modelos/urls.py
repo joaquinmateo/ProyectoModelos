@@ -15,12 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 #debo importame las funciones de views
 from app_coder.views import crea_curso, lista_cursos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('agrega-curso/<nombre>/<camada>', crea_curso),
-    path('lista-cursos/', lista_cursos),
+    path('app-coder/', include('app_coder.urls')),
 ]
+#Al estar copiado dentro de la carpeta de app_coder, no hace falta tenerlos
+#Si la URL consultada es en app-coder, irá al archivo de app_coder.urls y podremos visualizar todas las funciones
