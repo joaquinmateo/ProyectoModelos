@@ -12,6 +12,8 @@ class Curso(models.Model):
     #Se creó en la carpeta migartions el archivo 0001_.py
     #Ese archivo figura con el showmigrations pero no estará en el DB Browser
     #Para agregarlo escribir en la terminal python manage.py migrate
+    def __str__(self):
+        return f'{self.nombre} - {self.camada}'
 
 #T ODO LO QUE SIGUE VA EN LA TERMINAL
     #python manage.py shell para abrir una terminal interactiva
@@ -46,4 +48,7 @@ class Entregable(models.Model):
     fecha_entrega = models.DateField()
     #mbool
     entregado = models.BooleanField()
+    estudiante = models.ForeignKey(Estudiantes, on_delete=models.CASCADE)
+    #Control c para matar el servidor y hacemos un python manage.py makemigrations
+    #IMPORTANTE, ahora voy a matar la base de datos y las migraciones para no darle a estudiante el valor null
 

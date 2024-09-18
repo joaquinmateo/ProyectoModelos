@@ -1,0 +1,13 @@
+        <!-- Navigation-->
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <div class="home-button"> <!--Podemos cambiar el estilo creando un archivo css en la carpeta css, importante invocar el archivo-->
+                    <a class="navbar-brand" href="#!">Inicio</a> <!--Podemos agregar botones ahora-->
+                </div>
+                <a class="navbar-brand" href="{% url 'Profesores' %}">Profesores</a>
+                <a class="navbar-brand" href="{% url 'Cursos' %}">Cursos</a>
+                <a class="navbar-brand" href="{% url 'Entregables' %}">Entregables</a>
+                <a class="navbar-brand" href="{% url 'Estudiantes' %}">Estudiantes</a>
+                <a class="btn btn-primary" href="#signup">Iniciar Sesion</a>
+            </div>
+        </nav>
