@@ -14,6 +14,10 @@ class Curso(models.Model):
     #Para agregarlo escribir en la terminal python manage.py migrate
     def __str__(self):
         return f'{self.nombre} - {self.camada}'
+    class Meta():
+        verbose_name = 'Course'
+        verbose_name_plural = 'My Courses...'
+        ordering = ('nombre', 'camada')
 
 #T ODO LO QUE SIGUE VA EN LA TERMINAL
     #python manage.py shell para abrir una terminal interactiva
@@ -29,6 +33,8 @@ class Estudiantes(models.Model):
     apellido = models.CharField(max_length=50)
     #memail
     email = models.EmailField()
+    def __str__(self):
+        return f'{self.nombre} - {self.apellido}'
 
 #Hacemos un python manage.py makemigrations y en la carpeta migrations se creeará el 0002
 #python manage.py migrate para llevarlo al DB Browser
@@ -49,6 +55,13 @@ class Entregable(models.Model):
     #mbool
     entregado = models.BooleanField()
     estudiante = models.ForeignKey(Estudiantes, on_delete=models.CASCADE)
+    def __str__(self):
+        return f'{self.nombre}'
     #Control c para matar el servidor y hacemos un python manage.py makemigrations
-    #IMPORTANTE, ahora voy a matar la base de datos y las migraciones para no darle a estudiante el valor null
+    #IMPORTANTE, ahora voy a matar la base de datos y las migraciones (los 000X) para no darle a estudiante el valor null
+    #python manage.py migrate
+    #Volvemos a crear el superusuario xq se borró
+    #Si en el administrador agregamos un entregable nos pedirá elegir a un estudiante, para eso, será necesario tener un estudiante creado
+    #Incluso se pueden crear estudiantes desde el mismo Entregables
+
 

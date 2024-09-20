@@ -1,0 +1,17 @@
+{% extends 'padre.html' %}
+
+
+{% block contenidoquecambia %}
+
+    <form action ="{% url 'BuscarCamada' %}" method="get"> 
+        <!--Como lo que ahora hace el usuario es buscar, el metodo get lo va a llevar a lo que busca-->
+    
+        <p>Camada: <input type="number" name="camada"></p> 
+        <!--Para buscar por nombre cambiar Camada por Nombre y number por text y camada por nombre(no es obligartorio solo tiene más sentido)-->
+        <!--Y en nuestra view en buscar camada debe ser req.GET["nombre"], y así con el resto-->
+
+        <button type="submit">Buscar</button>
+
+    </form>
+
+{% endblock contenidoquecambia %}
