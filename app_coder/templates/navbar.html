@@ -1,13 +1,24 @@
-        <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <div class="home-button"> <!--Podemos cambiar el estilo creando un archivo css en la carpeta css, importante invocar el archivo-->
-                    <a class="navbar-brand" href="#!">Inicio</a> <!--Podemos agregar botones ahora-->
-                </div>
-                <a class="navbar-brand" href="{% url 'Profesores' %}">Profesores</a>
-                <a class="navbar-brand" href="{% url 'Cursos' %}">Cursos</a>
-                <a class="navbar-brand" href="{% url 'Entregables' %}">Entregables</a>
-                <a class="navbar-brand" href="{% url 'Estudiantes' %}">Estudiantes</a>
-                <a class="btn btn-primary" href="#signup">Iniciar Sesion</a>
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <div class="home-button"> <!--Podemos cambiar el estilo creando un archivo css en la carpeta css, importante invocar el archivo-->
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a> <!--Podemos agregar botones ahora-->
             </div>
-        </nav>
+            <a class="navbar-brand" href="{% url 'ListaProfesores' %}">Profesores</a>
+            <a class="navbar-brand" href="{% url 'ListaCursos' %}">Cursos</a>
+            <a class="navbar-brand" href="{% url 'Entregables' %}">Entregables</a>
+            <a class="navbar-brand" href="{% url 'Estudiantes' %}">Estudiantes</a>
+
+                
+            {% if user.is_authenticated %}
+
+                <p>Bienvenido {{user.username}}</p>
+                <form action="{% url 'Logout' %}" method="post">{% csrf_token %}
+                    <button class="btn btn-primary" type="submit">Cerrar sesión</button>
+                </form>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'Login' %}">Iniciar Sesion</a>
+            {% endif %}
+                    
+        </div>
+    </nav>

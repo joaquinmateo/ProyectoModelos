@@ -33,6 +33,7 @@ class Estudiantes(models.Model):
     apellido = models.CharField(max_length=50)
     #memail
     email = models.EmailField()
+    #curso = models.ManyToManyField(Curso, related_name="estudiante_curso")
     def __str__(self):
         return f'{self.nombre} - {self.apellido}'
 
@@ -42,8 +43,10 @@ class Estudiantes(models.Model):
 class Profesor(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     profesion = models.CharField(max_length=50, null=True)
+    def __str__(self):
+        return f'{self.nombre} {self.apellido}'
 
 #Si hacemos modificaciones a clases ya migradas al Db Browser debemos escribirle a la modificación null=True 
 # En migrations se creará como un nuevo archivo, pero en Db Browser aparece como un atributo más  
@@ -54,7 +57,7 @@ class Entregable(models.Model):
     fecha_entrega = models.DateField()
     #mbool
     entregado = models.BooleanField()
-    estudiante = models.ForeignKey(Estudiantes, on_delete=models.CASCADE)
+    estudiante = models.ForeignKey(Estudiantes, on_delete=models.CASCADE) #De ésta manera si se elimina un estudiante también lo hará su entregable
     def __str__(self):
         return f'{self.nombre}'
     #Control c para matar el servidor y hacemos un python manage.py makemigrations
